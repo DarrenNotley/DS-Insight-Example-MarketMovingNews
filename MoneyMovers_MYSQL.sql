@@ -97,22 +97,6 @@ CREATE INDEX links_interaction_type_idx ON links (interaction_type);
 CREATE INDEX links_created_at_idx ON links (created_at);
 
 
-CREATE TABLE IF NOT EXISTS links_meta (
-  interaction_id VARCHAR(64) NOT NULL,
-  interaction_type VARCHAR(50) NOT NULL,
-  created_at DATETIME DEFAULT NULL,
-  charset VARCHAR(50) DEFAULT NULL,
-  content_type VARCHAR(50) DEFAULT NULL,
-  description VARCHAR(255) DEFAULT NULL,
-  language VARCHAR(50) DEFAULT NULL
-)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci;
-CREATE INDEX links_meta_interaction_id_idx ON links_meta (interaction_id);
-CREATE INDEX links_meta_interaction_type_idx ON links_meta (interaction_type);
-CREATE INDEX links_meta_created_at_idx ON links_meta (created_at);
-
 #Salience 
 CREATE TABLE IF NOT EXISTS salience_content_entities (
   interaction_id VARCHAR(64) NOT NULL,
