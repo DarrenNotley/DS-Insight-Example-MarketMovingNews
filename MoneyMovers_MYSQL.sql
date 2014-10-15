@@ -35,22 +35,6 @@ COLLATE = utf8_bin;
 CREATE INDEX interaction_interaction_type_idx ON interaction (interaction_type);
 CREATE INDEX interaction_created_at_idx ON interaction (created_at);
 
-CREATE TABLE IF NOT EXISTS raw (
-  interaction_id VARCHAR(64) NOT NULL,
-  interaction_type VARCHAR(50) NOT NULL,
-  subscription_id VARCHAR(64) NOT NULL,
-  csdl_hash VARCHAR(64) NOT NULL,
-  csdl_hash_type VARCHAR(50) NOT NULL,
-  created_at timestamp NOT NULL,
-  data TEXT NOT NULL,
-  PRIMARY KEY (interaction_id, subscription_id)
-)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci;
-CREATE INDEX raw_interaction_id_idx ON raw (interaction_id);
-CREATE INDEX raw_interaction_type_idx ON raw (interaction_type);
-CREATE INDEX raw_created_at_idx ON raw (created_at);
 
 CREATE TABLE IF NOT EXISTS hashtags (
   interaction_id VARCHAR(64) NOT NULL,
@@ -77,26 +61,6 @@ COLLATE = utf8_general_ci;
 CREATE INDEX mentions_interaction_id_idx ON mentions (interaction_id);
 CREATE INDEX mentions_interaction_type_idx ON mentions (interaction_type);
 CREATE INDEX mentions_created_at_idx ON mentions (created_at);
-
-#Klout
-CREATE TABLE IF NOT EXISTS klout (
-  interaction_id VARCHAR(64) PRIMARY KEY,
-  interaction_type VARCHAR(64) NOT NULL,
-  created_at DATETIME DEFAULT NULL,
-  amplification INTEGER DEFAULT NULL,
-  class TEXT DEFAULT NULL,
-  network DECIMAL DEFAULT NULL,
-  score DECIMAL DEFAULT NULL,
-  slope DECIMAL DEFAULT NULL,
-  true_reach INTEGER DEFAULT NULL
-)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci;
-CREATE INDEX klout_interaction_id_idx ON klout (interaction_id);
-CREATE INDEX klout_interaction_type_idx ON klout (interaction_type);
-CREATE INDEX klout_created_at_idx ON klout (created_at);
-
 
 #Language 
 CREATE TABLE IF NOT EXISTS language (
@@ -168,41 +132,6 @@ CREATE INDEX salience_content_entities_interaction_id_idx ON salience_content_en
 CREATE INDEX salience_content_entities_interaction_type_idx ON salience_content_entities (interaction_type);
 CREATE INDEX salience_content_entities_created_at_idx ON salience_content_entities (created_at);
 
-CREATE TABLE IF NOT EXISTS salience_content_topics (
-  interaction_id VARCHAR(64) NOT NULL,
-  interaction_type VARCHAR(50) NOT NULL,
-  created_at DATETIME DEFAULT NULL,
-  name TEXT DEFAULT NULL,
-  hits FLOAT DEFAULT NULL,
-  score FLOAT DEFAULT NULL
-)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci;
-CREATE INDEX salience_content_topics_interaction_id_idx ON salience_content_topics (interaction_id);
-CREATE INDEX salience_content_topics_interaction_type_idx ON salience_content_topics (interaction_type);
-CREATE INDEX salience_content_topics_created_at_idx ON salience_content_topics (created_at);
-
-
-#Subscription 
-CREATE TABLE subscription (
-  interaction_id VARCHAR(64) NOT NULL,
-  interaction_type VARCHAR(64) NOT NULL,
-  interaction_created_at datetime NOT NULL,
-  subscription_id VARCHAR(64) NOT NULL,
-  subscription_hash VARCHAR(64) NOT NULL,
-  subscription_hash_type VARCHAR(64) NOT NULL,
-  subscription_inserted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (interaction_id, subscription_id),
-  INDEX subscription_interaction_created_at_idx (interaction_created_at),
-  INDEX subscription_subscription_id_idx (subscription_id),
-  INDEX subscription_subscription_hash_idx (subscription_hash),
-  INDEX subscription_subscription_hash_type_idx (subscription_hash_type)
-)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci;
-
 #Tags 
 CREATE TABLE tag_labels (
   interaction_id VARCHAR(64) NOT NULL,
@@ -259,7 +188,6 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
 CREATE INDEX facebook_created_at_idx ON facebook (created_at);
-
 
 #Twitter 
 CREATE TABLE twitter (
@@ -346,74 +274,7 @@ DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
 CREATE INDEX lexisnexis_indexing_ticker_interaction_id_idx ON lexisnexis_indexing_ticker (interaction_id);
 CREATE INDEX lexisnexis_indexing_ticker_created_at_idx ON lexisnexis_indexing_ticker (created_at);
-  
 
-CREATE TABLE lexisnexis_indexing_city (
-  interaction_id VARCHAR(64) NOT NULL,
-  interaction_type VARCHAR(64) NOT NULL,
-  created_at DATETIME NOT NULL,
-  term VARCHAR(255) DEFAULT NULL,
-  score DOUBLE DEFAULT NULL,
-  score_percentage INTEGER DEFAULT NULL
-)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci;
-CREATE INDEX lexisnexis_indexing_city_interaction_id_idx ON lexisnexis_indexing_city (interaction_id);
-CREATE INDEX lexisnexis_indexing_city_created_at_idx ON lexisnexis_indexing_city (created_at);
-
-
-#Facebook Pages
-CREATE TABLE IF NOT EXISTS facebook_page (
-  interaction_id VARCHAR(64) PRIMARY KEY,
-  created_at DATETIME DEFAULT NULL,
-  type VARCHAR(50) DEFAULT NULL,
-  id VARCHAR(255) DEFAULT NULL,
-  name VARCHAR(255) DEFAULT NULL,
-  link VARCHAR(255) DEFAULT NULL,
-  icon VARCHAR(255) DEFAULT NULL,
-  message TEXT DEFAULT NULL,
-  description TEXT DEFAULT NULL,
-  picture VARCHAR(255) DEFAULT NULL,
-  like_count INTEGER DEFAULT NULL
-)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci;
-CREATE INDEX facebook_page_interaction_id_idx ON facebook_page (interaction_id);
-CREATE INDEX facebook_page_created_at_idx ON facebook_page (created_at);
-
-
-CREATE TABLE IF NOT EXISTS facebook_page_page (
-  interaction_id VARCHAR(64) PRIMARY KEY,
-  created_at DATETIME DEFAULT NULL,
-  id VARCHAR(64) DEFAULT NULL,
-  name VARCHAR(255) DEFAULT NULL,
-  username VARCHAR(50) DEFAULT NULL,
-  category VARCHAR(50) DEFAULT NULL,
-  link VARCHAR(255) DEFAULT NULL
-)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci;
-CREATE INDEX facebook_page_page_interaction_id_idx ON facebook_page_page (interaction_id);
-CREATE INDEX facebook_page_page_created_at_idx ON facebook_page_page (created_at);
-
-
-CREATE TABLE IF NOT EXISTS facebook_page_post (
-  interaction_id VARCHAR(64) PRIMARY KEY,
-  created_at DATETIME DEFAULT NULL,
-  id VARCHAR(64) DEFAULT NULL,
-  type VARCHAR(50) DEFAULT NULL,
-  link VARCHAR(255) DEFAULT NULL,
-  content TEXT DEFAULT NULL,
-  post_created_at DATETIME DEFAULT NULL
-)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci;
-CREATE INDEX facebook_page_post_interaction_id_idx ON facebook_page_post (interaction_id);
-CREATE INDEX facebook_page_post_created_at_idx ON facebook_page_post (created_at);
 
 
 
