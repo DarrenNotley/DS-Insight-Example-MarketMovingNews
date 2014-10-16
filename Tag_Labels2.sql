@@ -1,0 +1,1 @@
+CREATE VIEW tag_labels2 AS (select tag_labels.interaction_id as interaction_id,tag_labels.interaction_type AS interaction_type,tag_labels.created_at AS created_at,tag_labels.namespace AS namespace,tag_labels.label AS label from tag_labels where tag_labels.namespace = 'sentiment');
