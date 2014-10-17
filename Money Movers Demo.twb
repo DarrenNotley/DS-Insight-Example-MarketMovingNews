@@ -240,75 +240,6 @@
       <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
       <style>
         <style-rule element='mark'>
-          <encoding attr='color' field='[none:tag_labels2_label:nk]' type='palette'>
-            <map to='#1f77b4'>
-              <bucket>%null%</bucket>
-            </map>
-            <map to='#1f77b4'>
-              <bucket>&quot;Executive Moves&quot;</bucket>
-            </map>
-            <map to='#2ca02c'>
-              <bucket>&quot;Negative&quot;</bucket>
-            </map>
-            <map to='#2ca02c'>
-              <bucket>&quot;Positive Company News&quot;</bucket>
-            </map>
-            <map to='#8c564b'>
-              <bucket>&quot;Positive&quot;</bucket>
-            </map>
-            <map to='#9467bd'>
-              <bucket>&quot;Neutral&quot;</bucket>
-            </map>
-            <map to='#bcbd22'>
-              <bucket>&quot;Strongly Positive&quot;</bucket>
-            </map>
-            <map to='#d62728'>
-              <bucket>&quot;Reputational Risks&quot;</bucket>
-            </map>
-            <map to='#ff7f0e'>
-              <bucket>&quot;Negative Company News&quot;</bucket>
-            </map>
-          </encoding>
-          <encoding attr='color' field='[none:interaction_type:nk]' type='palette'>
-            <map to='#1f83b4'>
-              <bucket>&quot;blog&quot;</bucket>
-            </map>
-            <map to='#24a052'>
-              <bucket>&quot;board&quot;</bucket>
-            </map>
-            <map to='#6f63bb'>
-              <bucket>&quot;youtube&quot;</bucket>
-            </map>
-            <map to='#95af33'>
-              <bucket>&quot;facebook&quot;</bucket>
-            </map>
-            <map to='#ac4bb2'>
-              <bucket>&quot;wordpress&quot;</bucket>
-            </map>
-            <map to='#cd4772'>
-              <bucket>&quot;twitter&quot;</bucket>
-            </map>
-            <map to='#f1be46'>
-              <bucket>&quot;newscred&quot;</bucket>
-            </map>
-            <map to='#ff850e'>
-              <bucket>&quot;tumblr&quot;</bucket>
-            </map>
-            <map to='#ffbc46'>
-              <bucket>&quot;lexisnexis&quot;</bucket>
-            </map>
-          </encoding>
-          <encoding attr='color' field='[none:Calculation_6950926085520113:nk]' type='palette'>
-            <map to='#1696ac'>
-              <bucket>&quot;Positive&quot;</bucket>
-            </map>
-            <map to='#c04aa7'>
-              <bucket>&quot;Negative&quot;</bucket>
-            </map>
-            <map to='#ff7f0e'>
-              <bucket>&quot;Neutral&quot;</bucket>
-            </map>
-          </encoding>
           <encoding attr='color' field='[none:label:nk]' type='palette'>
             <map to='#12a2a8'>
               <bucket>&quot;Victrex&quot;</bucket>
@@ -1148,6 +1079,75 @@
               <bucket>&quot;Genus&quot;</bucket>
             </map>
           </encoding>
+          <encoding attr='color' field='[none:Calculation_6950926085520113:nk]' type='palette'>
+            <map to='#1696ac'>
+              <bucket>&quot;Positive&quot;</bucket>
+            </map>
+            <map to='#c04aa7'>
+              <bucket>&quot;Negative&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;Neutral&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:interaction_type:nk]' type='palette'>
+            <map to='#1f83b4'>
+              <bucket>&quot;blog&quot;</bucket>
+            </map>
+            <map to='#24a052'>
+              <bucket>&quot;board&quot;</bucket>
+            </map>
+            <map to='#6f63bb'>
+              <bucket>&quot;youtube&quot;</bucket>
+            </map>
+            <map to='#95af33'>
+              <bucket>&quot;facebook&quot;</bucket>
+            </map>
+            <map to='#ac4bb2'>
+              <bucket>&quot;wordpress&quot;</bucket>
+            </map>
+            <map to='#cd4772'>
+              <bucket>&quot;twitter&quot;</bucket>
+            </map>
+            <map to='#f1be46'>
+              <bucket>&quot;newscred&quot;</bucket>
+            </map>
+            <map to='#ff850e'>
+              <bucket>&quot;tumblr&quot;</bucket>
+            </map>
+            <map to='#ffbc46'>
+              <bucket>&quot;lexisnexis&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:tag_labels2_label:nk]' type='palette'>
+            <map to='#1f77b4'>
+              <bucket>%null%</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;Executive Moves&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;Negative&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;Positive Company News&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;Positive&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;Neutral&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;Strongly Positive&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;Reputational Risks&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;Negative Company News&quot;</bucket>
+            </map>
+          </encoding>
         </style-rule>
       </style>
       <semantic-values>
@@ -1306,6 +1306,90 @@
         </panes>
         <rows></rows>
         <cols></cols>
+      </table>
+    </worksheet>
+    <worksheet name='Company News and Risks'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='MoneyMovers' name='mysql.41908.359900729163' />
+          </datasources>
+          <datasource-dependencies datasource='mysql.41908.359900729163'>
+            <column caption='Distinct Count Interaction' datatype='integer' name='[Calculation_4030926085732037]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='CountD([interaction_id])' scope-isolation='false' />
+            </column>
+            <column datatype='datetime' name='[created_at]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='string' name='[interaction_id]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[label]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[namespace]' role='dimension' type='nominal'>
+            </column>
+            <column-instance column='[created_at]' derivation='None' name='[none:created_at:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[label]' derivation='None' name='[none:label:nk]' pivot='key' type='nominal' />
+            <column-instance column='[namespace]' derivation='None' name='[none:namespace:nk]' pivot='key' type='nominal' />
+            <column-instance column='[tag_labels2_label]' derivation='None' name='[none:tag_labels2_label:nk]' pivot='key' type='nominal' />
+            <column-instance column='[tag_labels2_namespace]' derivation='None' name='[none:tag_labels2_namespace:nk]' pivot='key' type='nominal' />
+            <column datatype='string' name='[tag_labels2_label]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[tag_labels2_namespace]' role='dimension' type='nominal'>
+            </column>
+            <column-instance column='[created_at]' derivation='Hour-Trunc' name='[thr:created_at:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_4030926085732037]' derivation='User' name='[usr:Calculation_4030926085732037:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[mysql.41908.359900729163].[none:label:nk]'>
+            <groupfilter function='member' level='[none:label:nk]' member='&quot;Pace&quot;' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[mysql.41908.359900729163].[none:namespace:nk]'>
+            <groupfilter count='5' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+              <groupfilter direction='DESC' expression='[Calculation_4030926085732037]' function='order' user:ui-marker='order'>
+                <groupfilter function='member' level='[none:namespace:nk]' member='&quot;FTSE250.equity&quot;' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[mysql.41908.359900729163].[none:tag_labels2_label:nk]'>
+            <groupfilter function='union' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:tag_labels2_label:nk]' member='&quot;Executive Moves&quot;' />
+              <groupfilter function='member' level='[none:tag_labels2_label:nk]' member='&quot;Negative Company News&quot;' />
+              <groupfilter function='member' level='[none:tag_labels2_label:nk]' member='&quot;Positive Company News&quot;' />
+              <groupfilter function='member' level='[none:tag_labels2_label:nk]' member='&quot;Reputational Risks&quot;' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[mysql.41908.359900729163].[none:tag_labels2_namespace:nk]'>
+            <groupfilter function='member' level='[none:tag_labels2_namespace:nk]' member='&quot;sentiment&quot;' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[mysql.41908.359900729163].[none:namespace:nk]</column>
+            <column>[mysql.41908.359900729163].[none:created_at:qk]</column>
+            <column>[mysql.41908.359900729163].[none:tag_labels2_label:nk]</column>
+            <column>[mysql.41908.359900729163].[none:label:nk]</column>
+            <column>[mysql.41908.359900729163].[none:tag_labels2_namespace:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='quick-filter'>
+            <format attr='title' field='[mysql.41908.359900729163].[none:label:nk]' value='FTSE 250 Equity'>
+              <formatted-text>
+                <run>FTSE 250 Equity</run>
+              </formatted-text>
+            </format>
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[mysql.41908.359900729163].[none:tag_labels2_label:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[mysql.41908.359900729163].[usr:Calculation_4030926085732037:qk]</rows>
+        <cols>[mysql.41908.359900729163].[thr:created_at:qk]</cols>
       </table>
     </worksheet>
     <worksheet name='Data Source Trends'>
@@ -1845,7 +1929,7 @@
             <column-instance column='[created_at]' derivation='None' name='[none:created_at:qk]' pivot='key' type='quantitative' />
             <column-instance column='[label]' derivation='None' name='[none:label:nk]' pivot='key' type='nominal' />
             <column-instance column='[namespace]' derivation='None' name='[none:namespace:nk]' pivot='key' type='nominal' />
-            <column-instance column='[Number of Records]' derivation='Sum' name='[pcto:sum:Number of Records:qk:1]' pivot='key' type='quantitative'>
+            <column-instance column='[Number of Records]' derivation='Sum' name='[pcto:sum:Number of Records:qk]' pivot='key' type='quantitative'>
               <table-calc ordering-type='Rows' type='PctTotal' />
             </column-instance>
             <column-instance column='[Number of Records]' derivation='Sum' name='[sum:Number of Records:qk]' pivot='key' type='quantitative' />
@@ -1878,7 +1962,7 @@
               <wedge-size column='[mysql.41908.359900729163].[sum:Number of Records:qk]' />
               <size column='[mysql.41908.359900729163].[sum:Number of Records:qk]' />
               <text column='[mysql.41908.359900729163].[none:label:nk]' />
-              <text column='[mysql.41908.359900729163].[pcto:sum:Number of Records:qk:1]' />
+              <text column='[mysql.41908.359900729163].[pcto:sum:Number of Records:qk]' />
               <text column='[mysql.41908.359900729163].[sum:Number of Records:qk]' />
             </encodings>
             <style>
@@ -2119,6 +2203,44 @@
           <field>[mysql.41908.359900729163].[none:tag_labels2_label:nk]</field>
           <field>[mysql.41908.359900729163].[none:tag_labels2_namespace:nk]</field>
           <field>[mysql.41908.359900729163].[tdy:created_at:qk]</field>
+          <field>[mysql.41908.359900729163].[yr:created_at:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Company News and Risks'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='0' param='[mysql.41908.359900729163].[none:tag_labels2_label:nk]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[mysql.41908.359900729163].[none:tag_labels2_namespace:nk]' type='filter' />
+            <card param='[mysql.41908.359900729163].[none:namespace:nk]' type='filter' />
+            <card mode='dropdown' param='[mysql.41908.359900729163].[none:label:nk]' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[mysql.41908.359900729163].[none:interaction_type:nk]</field>
+          <field>[mysql.41908.359900729163].[none:namespace:nk]</field>
+          <field>[mysql.41908.359900729163].[none:tag_labels2_label:nk]</field>
+          <field>[mysql.41908.359900729163].[none:tag_labels2_namespace:nk]</field>
+          <field>[mysql.41908.359900729163].[tdy:created_at:qk]</field>
+          <field>[mysql.41908.359900729163].[thr:created_at:qk]</field>
           <field>[mysql.41908.359900729163].[yr:created_at:ok]</field>
         </color-one-way>
       </highlight>
@@ -3353,6 +3475,176 @@
       9ore83+nBzGd6e09PjW6rxpju4/3+s6d9vd6Z4PaFyPI0xSdr7rpldodP+4f+VaVtZ61R9Y5
       rbU/vGuM8W8G7Rc998TbLKen7iqEPGuW5r22J7p3YJzu93XjVc+j6B8B7enHshDjgFEAAAAA
       SUVORK5CYII=
+    </thumbnail>
+    <thumbnail height='192' name='Company News and Risks' width='192'>
+      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
+      WDy9aAAAAABJRU5ErkJggg==
     </thumbnail>
     <thumbnail height='192' name='Common Hashtags' width='192'>
       iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAAA3NCSVQICAjb4U/gAAAACXBI
